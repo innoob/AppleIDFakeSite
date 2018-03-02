@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  context-path: /AppleID
+manager:
+  username:
+    admin
+  password:
+    123456
