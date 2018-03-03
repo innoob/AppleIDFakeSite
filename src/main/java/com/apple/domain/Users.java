@@ -1,13 +1,23 @@
 package com.apple.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Users
  */
+
+@Entity
 public class Users {
 
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private String uuid;
     private String username;
-    private String password;
-    private String phone;
+	private String password;
+	private String phone;
 
     public Users(){
 
@@ -18,10 +28,11 @@ public class Users {
         this.password = password;
     }
 
-    public Users(String username,String password,String phone){
+    public Users(String username,String password,String phone,String uuid){
         this.username = username;
         this.password = password;
-        this.phone = phone;
+		this.phone = phone;
+		this.uuid = uuid;
     }
 
 	/**
@@ -61,6 +72,38 @@ public class Users {
 		this.phone = phone;
 	}
 
+	/**
+	 * @return the uuid
+	 */
+	public String getUuid() {
+		return uuid;
+	}
+
+	/**
+	 * @param uuid the uuid to set
+	 */
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public boolean isReal(){
+		return null!=username&&!"".equals(username)&&
+				null!=password&&!"".equals(password);
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
     
     
 }

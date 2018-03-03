@@ -1,2 +1,8 @@
+com/apple/services/UserService.class
+com/apple/domain/Manager.class
+com/apple/domain/Users.class
+com/apple/controller/ManagerController.class
+com/apple/domain/ManagerProperties.class
 com/apple/controller/LoginController.class
+com/apple/repository/UsersRepository.class
 com/apple/AppleIDApplication.class

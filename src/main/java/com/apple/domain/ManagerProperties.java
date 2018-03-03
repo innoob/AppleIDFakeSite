@@ -1,12 +1,12 @@
 package com.apple.domain;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 /**
  * Manager
  */
-@Repository
+@Component
 @ConfigurationProperties(prefix="manager")
 public class ManagerProperties {
 
@@ -37,5 +37,4 @@ public class ManagerProperties {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 }
