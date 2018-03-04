@@ -6,21 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Manager</title>
     <!-- <link rel="stylesheet" href="./static/css/manager.css"> -->
-    <script type="text/plain">
+    <script type="text/plain" id="template">
+        <tr class="row">
+            <td class="col-md-1">{id}</td>
+            <td class="col-md-3">{username}</td>
+            <td class="col-md-3">{password}</td>
+            <td class="col-md-3">{phone}</td>
+            <td class="col-md-2"><a href="/AppleID/delete/{id}"><button class="btn btn-danger">删除记录</button></a></td>
+        </tr>
     </script>
     <script src="/AppleID/static/js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/AppleID/static/bootstrap/css/bootstrap.min.css"/>
     <script src="/AppleID/static/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(()=>{
+            $("#send").on("click",(e)=>{
+                window.location.replace("/AppleID/sendmessage");
+            })
+
+            $.ajax({
+                url:"/AppleID/user/all",
+                type:"get",
+                success:(data)=>{
+                    for(index in data){
+                        var template = $("#template").html();
+                        for(item in data[index]){
+                            template = template.replace("{"+item+"}",data[index][item]);
+                        }
+                        template = template.replace("{id}",data[index]["id"]);
+                        $("#tb1").append(template);
+                    }
+                }
+            })
+        })
+    </script>
 </head>
 <body>
     <center>
         <h2>管理员操作</h2>
     </center>
-    <table class="container">
+    <table class="container" id="tb1">
         <tr class="row">
             <td class="col-md-9"></td>
             <td class="col-md-3">
-            <button id="send" class="btn btn-info">发送一条新信息</button>
+            <button id="send" class="btn btn-info">生成一条新信息</button>
             </td>
         </tr>
         <tr class="row">
@@ -29,13 +58,6 @@
             <td class="col-md-3">密码</td>
             <td class="col-md-3">手机</td>
             <td class="col-md-2">操作</td>
-        </tr>
-        <tr class="row">
-            <td class="col-md-1">1</td>
-            <td class="col-md-3">admin</td>
-            <td class="col-md-3">1234</td>
-            <td class="col-md-3">1231231231</td>
-            <td class="col-md-2"><button class="btn btn-danger">删除记录</button></td>
         </tr>
     </table>
 </body>

@@ -25,25 +25,27 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/userLogin/{uuid}",method = RequestMethod.GET)
+    @RequestMapping(value = "/login/{uuid}",method = RequestMethod.GET)
     public String userLogin(@PathVariable("uuid") String uuid,HttpServletRequest request){
-        if (null!=uuid){
-            System.out.println("UUID: "+uuid);
-            request.getSession().setAttribute("currentUUID", uuid);
-            return "index.html";
+        Users user =  userService.findUserByUUID(uuid);
+        if (null!=user){
+            logger.info("UUID: "+user.getUuid()+" 电话: "+user.getPhone());
+            request.getSession().setAttribute("currentUser", user);
+            return "login";
         }
-        return "error.html";
+        return "error";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@RequestParam("user") Users user,HttpServletRequest request){
-        if (request.getSession().getAttribute("firstLogin")==null) {
-            if (userService.save(user)){
+    @RequestMapping(value = "/signin",method = RequestMethod.POST)
+    public String signin(Users user,HttpServletRequest request){
+        Users current = (Users) request.getSession().getAttribute("currentUser");
+        if (current!=null){
+            if (userService.save(current,user)){
                 request.getSession().setAttribute("firstLogin", user);
-                return "faild.html";
+                return "login";
             }
         }
-        return "error.html";
+        return "error";
     }
 
 }

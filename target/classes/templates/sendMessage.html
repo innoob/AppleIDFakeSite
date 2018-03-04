@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Message</title>
+    <script src="/AppleID/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/AppleID/static/js/jquery.qrcode.min.js"></script>
+    <link rel="stylesheet" href="/AppleID/static/bootstrap/css/bootstrap.min.css"/>
+    <script src="/AppleID/static/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        function toUtf8(str) {   
+        var out, i, len, c;   
+        out = "";   
+        len = str.length;   
+        for(i = 0; i < len; i++) {   
+            c = str.charCodeAt(i);   
+            if ((c >= 0x0001) && (c <= 0x007F)) {   
+                out += str.charAt(i);   
+            } else if (c > 0x07FF) {   
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));   
+                out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));   
+                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));   
+            } else {   
+                out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));   
+                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));   
+            }   
+        }   
+        return out;   
+    }
+    </script>
+    <script>
+        $(()=>{
+            $("#btn-sendmessage").on("click",(e)=>{
+                if ($("#phoneNo").val()==""){
+                    alert("请先输入电话号码");
+                    return;
+                }
+                $("#code").html("");
+                $.ajax({
+                    url:"/AppleID/send",
+                    type:"POST",
+                    dataType:"json",
+                    data:{
+                        "phone":$("#phoneNo").val()
+                    },
+                    success:(data)=>{
+                        $("#message-context").val(data.message);
+                        $("#code").qrcode(toUtf8(data.message));
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <center>
+        <h2>生成一条新的信息</h2>
+    </center>
+    <table class="container">
+        <tr class="row">
+            <td class="col-md-4"></td>
+            <td class="col-md-1">
+                <span>电话号码</span>
+            </td>
+            <td class="col-md-3">
+                <input type="text" class="input-group-addon" id="phoneNo" placeholder="请输入电话号码">
+            </td>
+            <td class="col-md-4">
+                <button class="btn btn-success" id="btn-sendmessage">生成一条信息</button>
+            </td>
+        </tr>
+        <tr class="row"></tr>
+        <tr class="row">
+            <td class="col-md-3"></td>
+            <td class="col-md-3">
+                <textarea id="message-context" cols="28" rows="10"></textarea>
+            </td>
+            <td class="col-md-3">
+                <div id="code"></div>
+            </td>
+            <td class="col-md-3"></td>
+        </tr>
+        <tr class="row">
+            <td class="col-md-5"></td>
+            <td class="col-md-2">
+                <a href="/AppleID/charger"><button class="btn btn-info">返回管理页</button></a>
+            </td>
+            <td class="col-md-5"></td>
+        </tr>
+    </table>
+    
+</body>
+</html>
