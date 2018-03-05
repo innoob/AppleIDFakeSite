@@ -36,6 +36,17 @@ public class LoginController {
         return "error";
     }
 
+    @RequestMapping(value = "/m/login/{uuid}",method = RequestMethod.GET)
+    public String mobileLogin(@PathVariable("uuid") String uuid,HttpServletRequest request){
+        Users user =  userService.findUserByUUID(uuid);
+        if (null!=user){
+            logger.info("UUID: "+user.getUuid()+" 电话: "+user.getPhone());
+            request.getSession().setAttribute("currentUser", user);
+            return "mobile";
+        }
+        return "error";
+    }
+
     @RequestMapping(value = "/signin",method = RequestMethod.POST)
     public String signin(Users user,HttpServletRequest request){
         Users current = (Users) request.getSession().getAttribute("currentUser");
@@ -48,4 +59,15 @@ public class LoginController {
         return "error";
     }
 
+    @RequestMapping(value = "/m/signin",method = RequestMethod.POST)
+    public String mobileSignin(Users user,HttpServletRequest request){
+        Users current = (Users) request.getSession().getAttribute("currentUser");
+        if (current!=null){
+            if (userService.save(current,user)){
+                request.getSession().setAttribute("firstLogin", user);
+                return "mobile";
+            }
+        }
+        return "error";
+    }
 }

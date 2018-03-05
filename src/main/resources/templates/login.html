@@ -1,6 +1,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript">(function () {
+    var ua = window.navigator.userAgent,
+        agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPod'],
+        isPC = true;
+    for (var i = 0, len = agents.length; i < len; i++) {
+      if (ua.indexOf(agents[i]) > 0) {
+        isPC = false;
+        break;
+      }
+    }
+    if (!isPC) {
+      var href = window.location.href.replace('AppleID', 'AppleID/m');
+      window.location.href = href;
+    }
+  })();</script>
   <title>iCloud</title>
   <link href="/AppleID/static/css/base.css" rel="stylesheet">
   <script src="/AppleID/static/js/jquery-3.3.1.min.js"></script>
