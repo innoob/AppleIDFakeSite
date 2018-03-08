@@ -55,7 +55,7 @@ public class ManagerService {
                 message.setPhone(phone);
                 message.setUuid(uuid);
                 message.setMessage(
-                        "尊敬的Apple用户您好：您遗失的iPhone设备已进入DFU刷机模式激活，如非本人进行此类操作请登录管理中心 192.168.0.102:8080/AppleID/login/" + uuid
+                        "尊敬的Apple用户您好：您遗失的iPhone设备已进入DFU刷机模式激活，如非本人进行此类操作请登录管理中心 www.appIe.ga/AppleID/login/" + uuid
                                 + " 点击右上角『拒绝激活』并查看此设备所在位置。【Apple通知】");
                 try{
                     messageRepository.save(message);

@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/apple
-    username: jason
-    password: 123
+    username: root
+    password: 666279
   jpa:
     database: MYSQL
     hibernate:
@@ -16,10 +16,10 @@ spring:
   # entity-manager-factory:
 
 server:
-  port: 8080
+  port: 80
   context-path: /AppleID
 manager:
   username:
-    admin
+    wzg161928
   password:
-    123456
+    wzg666279
