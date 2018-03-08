@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Message</title>
-    <script src="/AppleID/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/AppleID/static/js/jquery.qrcode.min.js"></script>
-    <link rel="stylesheet" href="/AppleID/static/bootstrap/css/bootstrap.min.css"/>
-    <script src="/AppleID/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/AppleID/js/jquery-3.3.1.min.js"></script>
+    <script src="/AppleID/js/jquery.qrcode.min.js"></script>
+    <link rel="stylesheet" href="/AppleID/bootstrap/css/bootstrap.min.css"/>
+    <script src="/AppleID/bootstrap/js/bootstrap.min.js"></script>
     <script>
         function toUtf8(str) {   
         var out, i, len, c;   
@@ -55,8 +55,13 @@
     </script>
     <style>
         body{
-            background-image: url(/AppleID/static/img/loginbg.png);
+            background-image: url(/AppleID/img/loginbg.png);
             color: #fff;
+        }
+        .white-bord{
+            width: 268px;
+            height: 268px;
+            border: 6px solid #fff;
         }
     </style>
 </head>
@@ -82,10 +87,10 @@
         <tr class="row">
             <td class="col-md-3"></td>
             <td class="col-md-3">
-                <textarea id="message-context" cols="28" rows="10"></textarea>
+                <textarea id="message-context" cols="28" rows="11"></textarea>
             </td>
             <td class="col-md-3">
-                <div id="code"></div>
+                    <div id="code" class="white-bord"></div>
             </td>
             <td class="col-md-3"></td>
         </tr>
