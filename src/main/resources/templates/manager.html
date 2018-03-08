@@ -35,11 +35,27 @@
                         }
                         template = template.replace("{id}",data[index]["id"]);
                         $("#tb1").append(template);
+                        $("tr").css("backgroundColor","#aaa");
+                        $("tr:odd").css("backgroundColor","#eee");
+                        $("tr:first").css("backgroundColor","transparent");
+                        $("tr:eq(1)").css("backgroundColor","orange");
                     }
                 }
             })
+                $("tr").css("backgroundColor","#aaa");
+                $("tr:odd").css("backgroundColor","#eee");
+                $("tr:first").css("backgroundColor","transparent");
+                $("tr:eq(1)").css("backgroundColor","orange");
         })
     </script>
+    <style>
+        body{
+            background-image:url(/AppleID/static/img/loginbg.png);
+        }
+        h2{
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <center>

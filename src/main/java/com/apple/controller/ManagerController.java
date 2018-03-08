@@ -2,12 +2,10 @@ package com.apple.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.apple.domain.Manager;
-import com.apple.domain.ManagerProperties;
 import com.apple.domain.Message;
 import com.apple.domain.Users;
 import com.apple.services.ManagerService;
