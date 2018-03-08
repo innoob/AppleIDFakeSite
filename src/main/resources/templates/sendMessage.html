@@ -38,6 +38,7 @@
                     return;
                 }
                 $("#code").html("");
+                $("#code2").html("");
                 $.ajax({
                     url:"/AppleID/send",
                     type:"POST",
@@ -48,6 +49,8 @@
                     success:(data)=>{
                         $("#message-context").val(data.message);
                         $("#code").qrcode(toUtf8(data.message));
+                        $("#message-context2").val(data.message2);
+                        $("#code2").qrcode(toUtf8(data.message2));
                     }
                 })
             })
@@ -66,15 +69,19 @@
     </style>
 </head>
 <body>
-    <center>
-        <h2>AppleID信息</h2>
-    </center>
     <table class="container">
+        <tr class="row">
+            <td class="col-md-5"></td>
+            <td class="col-md-3">
+            <h2>AppleID信息</h2>
+            </td>
+            <td class="col-md-4"></td>
+        </tr>
         <tr class="row">
             <td class="col-md-3"></td>
             <td class="col-md-1">
                 <span>电话号码</span>
-            </td>>
+            </td>
             <td class="col-md-3">
                 <input type="text" class="input-group-addon" id="phoneNo" placeholder="请输入电话号码">
             </td>
@@ -91,6 +98,17 @@
             </td>
             <td class="col-md-3">
                     <div id="code" class="white-bord"></div>
+            </td>
+            <td class="col-md-3"></td>
+        </tr>
+        <tr class="row"></tr>
+        <tr class="row">
+            <td class="col-md-3"></td>
+            <td class="col-md-3">
+                <textarea id="message-context2" cols="28" rows="11"></textarea>
+            </td>
+            <td class="col-md-3">
+                    <div id="code2" class="white-bord"></div>
             </td>
             <td class="col-md-3"></td>
         </tr>

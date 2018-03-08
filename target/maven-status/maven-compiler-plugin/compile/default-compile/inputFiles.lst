@@ -1,0 +1,11 @@
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/repository/UsersRepository.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/AppleIDApplication.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/Message.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/repository/MessageRepository.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/Users.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/Manager.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/ManagerProperties.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/controller/LoginController.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/services/ManagerService.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/controller/ManagerController.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/services/UserService.java

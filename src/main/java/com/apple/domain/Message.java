@@ -13,6 +13,7 @@ public class Message {
 	@GeneratedValue
     private Integer id;
     private String message;
+    private String message2;
     private String phone;
     private String uuid;
 
@@ -66,6 +67,18 @@ public class Message {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	/**
+	 * @return the message2
+	 */
+	public String getMessage2() {
+		return message2;
+	}
+	/**
+	 * @param message2 the message2 to set
+	 */
+	public void setMessage2(String message2) {
+		this.message2 = message2;
 	}
 
     
