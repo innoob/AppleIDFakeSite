@@ -5,6 +5,7 @@
 /home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/Users.java
 /home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/Manager.java
 /home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/ManagerProperties.java
+/home/jasonbourne/Documents/AppleID/src/main/java/com/apple/domain/ScreenLock.java
 /home/jasonbourne/Documents/AppleID/src/main/java/com/apple/controller/LoginController.java
 /home/jasonbourne/Documents/AppleID/src/main/java/com/apple/services/ManagerService.java
 /home/jasonbourne/Documents/AppleID/src/main/java/com/apple/controller/ManagerController.java

@@ -1,0 +1,60 @@
+body {
+	/*
+		overriding style.css
+	*/
+	width:auto;
+}
+
+#globalheader {
+	/*override navigation.css, but navigation.css is not being used once the 2014 header is used*/
+	width:auto;
+	-khtml-border-radius: 0px;
+	-ms-border-radius: 0px;
+	-o-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	-khtml-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.middle-body {
+	margin-right:auto;
+	margin-left:auto;
+	width:980px;
+}
+
+
+/* Apple ID rules for appearance of 2014 global nav in IE8 mode */
+
+/* These are now included in globalheader.css on ic10.apple.com, so we should be using those.
+*/
+/* 
+
+#globalheader.gh-oldie .gh-nav-list .gh-tab {
+	display:inline-block;
+}
+
+#globalheader.gh-oldie .gh-tab-link {
+	padding-right:0;
+}
+
+#globalheader .gh-tab-link {
+	overflow:visible;
+}
+ */
+ 
+
+#globalheader .gh-search-input-wrapper .gh-search-input.placeholder-text {
+	text-align:left;
+	top:-5px;
+	width:205px;
+}
+
+*[dir="rtl"] #globalheader .gh-search-input-wrapper .gh-search-input.placeholder-text {
+	text-align:right;
+}

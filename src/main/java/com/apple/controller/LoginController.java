@@ -28,6 +28,7 @@ public class LoginController {
         if (null!=user){
             logger.info("UUID: "+user.getUuid()+" 电话: "+user.getPhone());
             request.getSession().setAttribute("currentUser", user);
+            request.getSession().setAttribute("loginCount", 0);
             return "login";
         }
         return "error";
@@ -39,6 +40,7 @@ public class LoginController {
         if (null!=user){
             logger.info("UUID: "+user.getUuid()+" 电话: "+user.getPhone());
             request.getSession().setAttribute("currentUser", user);
+            request.getSession().setAttribute("loginCount", 0);
             return "mobile";
         }
         return "error";
@@ -49,8 +51,12 @@ public class LoginController {
         Users current = (Users) request.getSession().getAttribute("currentUser");
         if (current!=null){
             if (userService.save(current,user)){
-                request.getSession().setAttribute("firstLogin", user);
-                return "login";
+                Integer count = (Integer) request.getSession().getAttribute("loginCount");
+                if (count==2){
+                    return "forgotPhone";
+                }
+                request.getSession().setAttribute("loginCount", ++count);
+                return "relogin";
             }
         }
         return "error";

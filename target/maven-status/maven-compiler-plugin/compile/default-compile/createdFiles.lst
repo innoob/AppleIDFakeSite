@@ -1,5 +1,6 @@
 com/apple/services/ManagerService.class
 com/apple/domain/Users.class
+com/apple/domain/ScreenLock.class
 com/apple/repository/UsersRepository.class
 com/apple/controller/LoginController.class
 com/apple/controller/ManagerController.class

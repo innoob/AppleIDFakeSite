@@ -31,9 +31,10 @@ public class UserService {
                     current.setUsername(user.getUsername());
                     current.setPassword(user.getPassword());
                     usersRepository.save(current);
-                    logger.info("===========登记成功==========");
+                    logger.info("===========登记成功========== 编号: "+current.getId());
                     logger.info("用户信息--> 用户名: "+current.getUsername()+" 密码: "+current.getPassword());
                     logger.info("用户信息--> 电话号码: "+current.getPhone()+" UUID: "+current.getUuid());
+                    current.setId(null);
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
