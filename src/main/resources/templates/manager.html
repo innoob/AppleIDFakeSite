@@ -11,7 +11,7 @@
             };})()
     </script>
     <meta http-equiv="refresh" content="3">
-    <title>Manager</title>
+    <title>ManagerAppleID</title>
     <!-- <link rel="stylesheet" href="./static/css/manager.css"> -->
     <script type="text/plain" id="template">
         <tr class="row">
@@ -29,6 +29,9 @@
         $(()=>{
             $("#send").on("click",(e)=>{
                 window.location.replace("/AppleID/sendmessage");
+            })
+            $("#lockPass").on("click",(e)=>{
+                window.location.replace("/AppleID/lockpass")
             })
             $.ajax({
                 url:"/AppleID/user/all",
@@ -69,7 +72,10 @@
     </center>
     <table class="container" id="tb1">
         <tr class="row">
-            <td class="col-md-9"></td>
+            <td class="col-md-2">
+                <button id="lockPass" class="btn btn-info">查看屏幕锁</button>
+            </td>
+            <td class="col-md-7"></td>
             <td class="col-md-3">
             <button id="send" class="btn btn-info">生成一条新信息</button>
             </td>

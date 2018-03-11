@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.apple.domain.Manager;
 import com.apple.domain.Message;
+import com.apple.domain.ScreenLock;
 import com.apple.domain.Users;
 import com.apple.services.ManagerService;
+import com.apple.services.ScreenLockService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,9 @@ public class ManagerController {
 
     @Autowired
     private ManagerService managerService;
+
+    @Autowired
+    private ScreenLockService screenLockService;
 
     @RequestMapping(value="/charge",method=RequestMethod.POST)
     @ResponseBody
@@ -61,6 +66,17 @@ public class ManagerController {
         return "managerLogin";
     }
 
+    @RequestMapping(value ="/lockpass",method=RequestMethod.GET)
+    public String lockPass(HttpServletRequest request){
+        Manager manager = (Manager) request.getSession().getAttribute("currentManager");
+        if (null!=manager){
+            return "screenLock";
+        }
+        return "managerLogin";
+
+    }
+
+
     @RequestMapping(value="/send",method=RequestMethod.POST)
     @ResponseBody
     public Message message(String phone,HttpServletRequest request){
@@ -81,6 +97,16 @@ public class ManagerController {
         return null;
     }
 
+    @RequestMapping(value="/lock/all",method=RequestMethod.GET)
+    @ResponseBody
+    public List<ScreenLock> findAllLock(HttpServletRequest request){
+        Manager manager = (Manager) request.getSession().getAttribute("currentManager");
+        if(null!=manager){
+            return screenLockService.findAllLocks(manager);
+        }
+        return null;
+    }
+
     @RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
     public String deleteUsers(@PathVariable("id") String id,HttpServletRequest request){
         Manager manager = (Manager) request.getSession().getAttribute("currentManager");
@@ -93,5 +119,19 @@ public class ManagerController {
         }
         return "managerLogin";
     }
+    @RequestMapping(value="/delete/lock/{id}",method=RequestMethod.GET)
+    public String deleteLocks(@PathVariable("id") String id,HttpServletRequest request){
+        Manager manager = (Manager) request.getSession().getAttribute("currentManager");
+        if(null!=manager){
+            if(null!=id&&!"".equals(id)){
+                if(screenLockService.deleteLocks(manager, Integer.valueOf(id))){
+                    return "screenLock";
+                }
+            }
+        }
+        return "managerLogin";
+    }
+
+
 
 }

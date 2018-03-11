@@ -1,4 +1,5 @@
 com/apple/services/ManagerService.class
+com/apple/controller/VerifyController.class
 com/apple/domain/Users.class
 com/apple/domain/ScreenLock.class
 com/apple/repository/UsersRepository.class
@@ -6,7 +7,9 @@ com/apple/controller/LoginController.class
 com/apple/controller/ManagerController.class
 com/apple/domain/ManagerProperties.class
 com/apple/services/UserService.class
+com/apple/repository/ScreenLockRepository.class
 com/apple/domain/Message.class
 com/apple/domain/Manager.class
 com/apple/repository/MessageRepository.class
+com/apple/services/ScreenLockService.class
 com/apple/AppleIDApplication.class
