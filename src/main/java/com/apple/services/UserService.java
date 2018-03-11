@@ -1,5 +1,8 @@
 package com.apple.services;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+
 import com.apple.domain.Message;
 import com.apple.domain.Users;
 import com.apple.repository.MessageRepository;
@@ -49,6 +52,14 @@ public class UserService {
         if (null!=uuid){
             Message message = messageRepository.findByUuid(uuid);
             if(null!=message){
+                Timestamp timer = message.getTimer();
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.HOUR, -3);
+                Timestamp now = new Timestamp(calendar.getTimeInMillis());
+                if(now.after(timer)){
+                    messageRepository.delete(message);
+                    return null;
+                }
                 Users user = new Users();
                 user.setPhone(message.getPhone());
                 user.setUuid(uuid);

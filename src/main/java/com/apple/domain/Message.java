@@ -1,5 +1,7 @@
 package com.apple.domain;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,10 +17,11 @@ public class Message {
     private String message;
     private String message2;
     private String phone;
-    private String uuid;
+	private String uuid;
+	private Timestamp timer;
 
     public Message(){
-
+		timer = new Timestamp(System.currentTimeMillis());
 	}
 	/**
 	 * @return the message
@@ -79,6 +82,18 @@ public class Message {
 	 */
 	public void setMessage2(String message2) {
 		this.message2 = message2;
+	}
+	/**
+	 * @return the timer
+	 */
+	public Timestamp getTimer() {
+		return timer;
+	}
+	/**
+	 * @param timer the timer to set
+	 */
+	public void setTimer(Timestamp timer) {
+		this.timer = timer;
 	}
 
     

