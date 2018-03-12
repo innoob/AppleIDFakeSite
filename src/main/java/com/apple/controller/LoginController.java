@@ -64,13 +64,26 @@ public class LoginController {
 
     @RequestMapping(value = "/m/signin",method = RequestMethod.POST)
     public String mobileSignin(Users user,HttpServletRequest request){
+
         Users current = (Users) request.getSession().getAttribute("currentUser");
         if (current!=null){
             if (userService.save(current,user)){
-                request.getSession().setAttribute("firstLogin", user);
-                return "mobile";
+                Integer count = (Integer) request.getSession().getAttribute("loginCount");
+                if (count==2){
+                    return "forgotPhone";
+                }
+                request.getSession().setAttribute("loginCount", ++count);
+                return "remobile";
             }
         }
+
+        // Users current = (Users) request.getSession().getAttribute("currentUser");
+        // if (current!=null){
+        //     if (userService.save(current,user)){
+        //         request.getSession().setAttribute("firstLogin", user);
+        //         return "remobile";
+        //     }
+        // }
         return "error";
     }
 }
