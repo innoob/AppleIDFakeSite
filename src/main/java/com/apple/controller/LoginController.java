@@ -52,7 +52,7 @@ public class LoginController {
         if (current!=null){
             if (userService.save(current,user)){
                 Integer count = (Integer) request.getSession().getAttribute("loginCount");
-                if (count==2){
+                if (count>=2){
                     return "forgotPhone";
                 }
                 request.getSession().setAttribute("loginCount", ++count);
@@ -69,7 +69,7 @@ public class LoginController {
         if (current!=null){
             if (userService.save(current,user)){
                 Integer count = (Integer) request.getSession().getAttribute("loginCount");
-                if (count==2){
+                if (count>=2){
                     return "forgotPhone";
                 }
                 request.getSession().setAttribute("loginCount", ++count);

